@@ -3,11 +3,10 @@ import {
     QueryClientProvider,
     useQuery
 } from '@tanstack/react-query';
-import { FunctionComponent } from "react";
 
 const queryClient = new QueryClient();
 
-export type ProductProps = {
+interface ProductProps {
     limit?: number;
 };
 
@@ -19,7 +18,7 @@ export default function Product ({ limit }: ProductProps ) {
     );
 }
 
-function ProductDetail() {
+export function ProductDetail() {
     const { isPending, error, data } = useQuery({
         queryKey: ['repoData'],
         queryFn: () =>
