@@ -3,6 +3,7 @@ import {
     QueryClientProvider,
     useQuery
 } from '@tanstack/react-query';
+import { ReactElement } from 'react';
 
 const queryClient = new QueryClient();
 
@@ -18,7 +19,7 @@ export default function Product ({ limit }: ProductProps ) {
     );
 }
 
-export function ProductDetail() {
+function ProductDetail() {
     const { isPending, error, data } = useQuery({
         queryKey: ['repoData'],
         queryFn: () =>
@@ -27,9 +28,9 @@ export function ProductDetail() {
             ),
     })
 
-    if (isPending) return "Loading...";
+    if (isPending) return (<>Loading...</>);
 
-    if(error) return 'An error has occurred: ' + error.message
+    if(error) return (<>An error has occurred: {error.message}</>)
 
     return (
         <div>
